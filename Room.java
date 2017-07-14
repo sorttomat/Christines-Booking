@@ -14,7 +14,7 @@ class Room {
     }
 
     public void printInfo() {
-        System.out.println(name + " is of size: " + size + ", and seats: " + numberOfSeats);
+        System.out.format("%s is of size: %f, and seats: %d %n", name, size, numberOfSeats) ;
 
     }
 
