@@ -14,7 +14,7 @@ class Room {
     }
 
     public void printInfo() {
-        System.out.println(name + " is of size: " + size + ", and seats: " + numberOfSeats);
+        System.out.println(name + " er av størrelse: " + size + ", har plass til: " + numberOfSeats);
 
     }
 
