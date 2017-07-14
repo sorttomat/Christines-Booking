@@ -14,8 +14,7 @@ class Room {
     }
 
     public void printInfo() {
-        System.out.println(name + " er av størrelse: " + size + ", har plass til: " + numberOfSeats);
-
+        System.out.format("%s er av størrelse: %f, and seats: %d %n", name, size, numberOfSeats) ;
     }
 
 }
