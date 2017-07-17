@@ -9,10 +9,15 @@
         - Timepris
         - Dagspris
         - Annen pris
+
+- DateTime
+    - Holde opplysninger om år, mnd, dag, time, minutt
+
 - Hvilke rom er opptatt
     - Fra - til
     - Hvem leier rommet
 - Kunden
     - Navn
         
+
 
