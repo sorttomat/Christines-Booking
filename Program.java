@@ -4,13 +4,11 @@ class Program {
         System.out.println("Velkommen til Christine og Arjans fantastiske rombooking!");
 
         DateTime start = new DateTime(2017, 7, 18, 8, 30);
-        DateTime end = new DateTime(2017, 7, 18, 8, 45);
+        DateTime end = new DateTime(2017, 7, 18, 9, 15);
 
-        Room room1 = new Room("Pluto", 40.0f, 16);
+        Duration d = end.subtract(start);
 
-        room1.printInfo();
-        float a = room1.getPrice(start, end);
-        System.out.println(a);
+        System.out.println(d);
 
     }
 
