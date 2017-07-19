@@ -1,58 +1,56 @@
 class DateTime {
-    private int _year;
-    private int _month;
-    private int _day;
-    private int _hour;
-    private int _minute;
+    private int _minutesSinceYear0;
 
     public DateTime(int year, int month, int day, int hour, int minute) {
-        _year = year;
-        _month = month;
-        _day = day;
-        _hour = hour;
-        _minute = minute;
+        _minutesSinceYear0 = minute;
+        _minutesSinceYear0 += hour * 60;
+        _minutesSinceYear0 += (day - 1) * 24 * 60;
+        _minutesSinceYear0 += (month - 1) * 30 * 24 * 60;
+        _minutesSinceYear0 += year * 12 * 30 * 24 * 60;
     }
 
     public String toString() {
-        return String.format("%04d-%02d-%02d %02d:%02d", _year, _month, _day, _hour, _minute);
+        return String.format("%04d-%02d-%02d %02d:%02d", getYear(), getMonth(), getDay(), getHour(), getMinute());
     }
 
-    public Duration subtract(DateTime x) {
-        int minutes;
-        int hours = 0;
-        int days = 0;
-        int months = 0;
-        int years = 0;
-
-        minutes = _minute - x._minute;
-        if (minutes < 0){
-            minutes += 60;
-            hours -= 1;
-        }
-
-        hours += _hour - x._hour;
-        if (hours < 0){
-            hours += 24;
-            days -= 1;
-        }
-                
-        days += _day - x._day;
-        if (days < 0){
-            days += 30;
-            months -= 1;
-        }
-                
-        months += _month - x._month;
-        if (months < 0){
-            months += 12;
-            years -= 1;
-        }
-                        
-        years += _year - x._year;
-
-
-
-        return new Duration(years, months, days, hours, minutes);
-        //TODO: ta hensyn til timer, dager, måneder, år.
+    private int getMinute() {
+        return _minutesSinceYear0 % 60;
     }
+
+    private int getHour() {
+        int hoursSinceYear0 = _minutesSinceYear0 / 60;
+        return hoursSinceYear0 % 24;
+    }
+
+    private int getDay() {
+        int hoursSinceYear0 = _minutesSinceYear0 / 60;
+        int daysSinceYear0 = hoursSinceYear0 / 24;
+        return (daysSinceYear0 % 30) + 1;
+    }
+
+    private int getMonth() {
+        int hoursSinceYear0 = _minutesSinceYear0 / 60;
+        int daysSinceYear0 = hoursSinceYear0 / 24;
+        int monthsSinceYear0 = daysSinceYear0 / 30;
+        return (monthsSinceYear0 % 12) + 1;
+    }
+
+    private int getYear() {
+        int hoursSinceYear0 = _minutesSinceYear0 / 60;
+        int daysSinceYear0 = hoursSinceYear0 / 24;
+        int monthsSinceYear0 = daysSinceYear0 / 30;
+        int yearsSinceYear0 = monthsSinceYear0 / 12;
+        return yearsSinceYear0;
+    }
+
+    public Duration subtract(DateTime other) {
+        int minutesDifference = this._minutesSinceYear0 - other._minutesSinceYear0;
+        return new Duration(minutesDifference);
+
+    }
+
+    public void addMinutes(int minutesToAdd) {
+        _minutesSinceYear0 += minutesToAdd;
+    }
+
 }

@@ -1,21 +1,12 @@
 class Duration {
-    private int minutes;
-    private int hours;
-    private int days;
-    private int months;
-    private int years;
+    private int _totalMinutes;
 
-    public Duration(int years, int months, int days, int hours, int minutes) {
-        this.minutes = minutes;
-        this.hours = hours;
-        this.days = days;
-        this.months = months;
-        this.years = years;
+    public Duration(int totalMinutes) {
+        _totalMinutes = totalMinutes;
     }
 
     public String toString() {
-        return String.format("%d years, %d months, %d days, %d hours, %d minutes.", years, months, days, hours,
-                minutes);
+        return String.format("%d years, %d months, %d days, %d hours, %d minutes.", getYear(), getMonth(), getDay(), getHour(), getMinute());
     }
 
     public float getTotalDays() {
@@ -27,15 +18,36 @@ class Duration {
     }
 
     public float getTotalMinutes() {
-        float totalMinutes = 0;
-
-        totalMinutes += this.minutes;
-        totalMinutes += this.hours * 60;
-        totalMinutes += this.days * 60 * 24;
-        totalMinutes += this.months * 60 * 24 * 30; //TODO: Er måneder med i denne?
-        totalMinutes += this.years * 60 * 24 * 30 * 12;
-
-        return totalMinutes;
+        return _totalMinutes;
     }
 
+    public int getMinute() {
+        return _totalMinutes % 60;
+    }
+
+    public int getHour() {
+        int totalHours = _totalMinutes / 60;
+        return totalHours % 24;
+    }
+
+    public int getDay() {
+        int totalHours = _totalMinutes / 60;
+        int totalDays = totalHours / 24;
+        return totalDays % 30;
+    }
+
+    public int getMonth() {
+        int totalHours = _totalMinutes / 60;
+        int totalDays = totalHours / 24;
+        int totalMonths = totalDays / 30;
+        return totalMonths % 12;
+    }
+
+    public int getYear(){
+        int totalHours = _totalMinutes / 60;
+        int totalDays = totalHours / 24;
+        int totalMonths = totalDays / 30;
+        int totalYears = totalMonths / 12;
+        return totalYears;
+    }
 }
