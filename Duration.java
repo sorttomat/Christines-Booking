@@ -1,20 +1,37 @@
 class Duration {
+    public static final int MINUTES_PER_HOUR = 60;
+    public static final int HOURS_PER_DAY = 24;
+    public static final int MINUTES_PER_DAY = MINUTES_PER_HOUR * HOURS_PER_DAY;
+
     private int _totalMinutes;
 
-    public Duration(int totalMinutes) {
+    private Duration(int totalMinutes) {
         _totalMinutes = totalMinutes;
     }
 
+    
+    public static Duration fromMinutes(int minutes){
+        return new Duration(minutes);
+    }
+
+    public static Duration fromHours(int hours){
+        return fromMinutes(hours * MINUTES_PER_HOUR);
+    }
+
+    public static Duration fromDays(int days){
+        return fromHours(days * HOURS_PER_DAY);
+    }
+
     public String toString() {
-        return String.format("%d years, %d months, %d days, %d hours, %d minutes.", getYear(), getMonth(), getDay(), getHour(), getMinute());
+        return String.format("%d days, %d hours, %d minutes.", getDay(), getHour(), getMinute());
     }
 
     public float getTotalDays() {
-        return getTotalHours() / 24;
+        return getTotalHours() / HOURS_PER_DAY;
     }
 
     public float getTotalHours() {
-        return getTotalMinutes() / 60;
+        return getTotalMinutes() / MINUTES_PER_HOUR;
     }
 
     public float getTotalMinutes() {
@@ -22,17 +39,17 @@ class Duration {
     }
 
     public int getMinute() {
-        return _totalMinutes % 60;
+        return _totalMinutes % MINUTES_PER_HOUR;
     }
 
     public int getHour() {
-        int totalHours = _totalMinutes / 60;
-        return totalHours % 24;
+        int totalHours = _totalMinutes / MINUTES_PER_HOUR;
+        return totalHours % HOURS_PER_DAY;
     }
 
     public int getDay() {
-        int totalHours = _totalMinutes / 60;
-        int totalDays = totalHours / 24;
-        return totalDays % 30;
+        int totalHours = _totalMinutes / MINUTES_PER_HOUR;
+        int totalDays = totalHours / HOURS_PER_DAY;
+        return totalDays;
     }
 }

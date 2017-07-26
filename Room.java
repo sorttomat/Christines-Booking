@@ -1,24 +1,25 @@
 
 class Room {
-    private String name;
-    private float size;
-    private int numberOfSeats;
+    private String _name;
+    private float _size;
+    private int _numberOfSeats;
+    private float _pricePerHour;
 
-    public Room(String name, float size, int numberOfSeats) {
-        this.name = name;
-        this.size = size;
-        this.numberOfSeats = numberOfSeats;
+    public Room(String name, float size, int numberOfSeats, float pricePerHour) {
+        _name = name;
+        _size = size;
+        _numberOfSeats = numberOfSeats;
+        _pricePerHour = pricePerHour;
+
     }
 
-    public float getPrice(DateTime from, DateTime to) {
-        //duration = to.subtract(from) 
-        //price = duration * pricePerHour
-        //return price
-        return 0;
+    public float getPrice(DateTime from, Duration duration) {
+        float price = duration.getTotalHours() * _pricePerHour;
+        return price;
     }
 
-    public void printInfo() {
-        System.out.format("%s er av størrelse: %.2f, and seats: %d %n", name, size, numberOfSeats) ;
+    public String toString() {
+        return String.format("%s er av størrelse: %.2f, and seats: %d. Price per hour: %f", _name, _size, _numberOfSeats, _pricePerHour) ;
     } 
 
 }
