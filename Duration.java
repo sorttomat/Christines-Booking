@@ -35,19 +35,4 @@ class Duration {
         int totalDays = totalHours / 24;
         return totalDays % 30;
     }
-
-    public int getMonth() {
-        int totalHours = _totalMinutes / 60;
-        int totalDays = totalHours / 24;
-        int totalMonths = totalDays / 30;
-        return totalMonths % 12;
-    }
-
-    public int getYear(){
-        int totalHours = _totalMinutes / 60;
-        int totalDays = totalHours / 24;
-        int totalMonths = totalDays / 30;
-        int totalYears = totalMonths / 12;
-        return totalYears;
-    }
 }
