@@ -9,6 +9,10 @@ class Duration {
         _totalMinutes = totalMinutes;
     }
 
+    public Duration(int days, int hours, int minutes) {
+        this(days * MINUTES_PER_DAY + hours * MINUTES_PER_HOUR + minutes);
+    }
+
     
     public static Duration fromMinutes(int minutes){
         return new Duration(minutes);
@@ -23,7 +27,7 @@ class Duration {
     }
 
     public String toString() {
-        return String.format("%d days, %d hours, %d minutes.", getDay(), getHour(), getMinute());
+        return String.format("%d d, %d h, %d m", getDay(), getHour(), getMinute());
     }
 
     public float getTotalDays() {

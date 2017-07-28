@@ -16,8 +16,14 @@
 - Hvilke rom er opptatt
     - Fra - til
     - Hvem leier rommet
+
 - Kunden
     - Navn
+    - Adresse
         
 
-
+- Booking
+    - Kunde
+    - Start
+    - Varighet
+    - Rom

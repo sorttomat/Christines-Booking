@@ -11,4 +11,8 @@ class Customer{
         return String.format("%s, %s", _name, _billingAddress);
     }
 
+    public String getName() {
+        return _name;
+    }
+
 }

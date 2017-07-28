@@ -13,13 +13,17 @@ class Room {
 
     }
 
-    public float getPrice(DateTime from, Duration duration) {
+    public float calculatePrice(DateTime from, Duration duration) {
         float price = duration.getTotalHours() * _pricePerHour;
         return price;
     }
 
     public String toString() {
-        return String.format("%s er av størrelse: %.2f, and seats: %d. Price per hour: %f", _name, _size, _numberOfSeats, _pricePerHour) ;
+        return String.format("%s er av størrelse: %.2f, and seats: %d. Price per hour: %.2f", _name, _size, _numberOfSeats, _pricePerHour) ;
     } 
+
+    public String getName() {
+        return _name;
+    }
 
 }
